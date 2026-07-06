@@ -2,8 +2,6 @@
 @source "../src";
 @import "tw-animate-css";
 
-#lovable-badge { display: none !important; }
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
