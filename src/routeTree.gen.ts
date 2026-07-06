@@ -13,6 +13,7 @@ import { Route as WorkRouteImport } from './routes/work'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkIndexRouteImport } from './routes/work.index'
+import { Route as WorkHealthcareRouteImport } from './routes/work.healthcare'
 
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
@@ -34,16 +35,23 @@ const WorkIndexRoute = WorkIndexRouteImport.update({
   path: '/',
   getParentRoute: () => WorkRoute,
 } as any)
+const WorkHealthcareRoute = WorkHealthcareRouteImport.update({
+  id: '/healthcare',
+  path: '/healthcare',
+  getParentRoute: () => WorkRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/work': typeof WorkRouteWithChildren
+  '/work/healthcare': typeof WorkHealthcareRoute
   '/work/': typeof WorkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/work/healthcare': typeof WorkHealthcareRoute
   '/work': typeof WorkIndexRoute
 }
 export interface FileRoutesById {
@@ -51,14 +59,15 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/work': typeof WorkRouteWithChildren
+  '/work/healthcare': typeof WorkHealthcareRoute
   '/work/': typeof WorkIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/work' | '/work/'
+  fullPaths: '/' | '/about' | '/work' | '/work/healthcare' | '/work/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/work'
-  id: '__root__' | '/' | '/about' | '/work' | '/work/'
+  to: '/' | '/about' | '/work/healthcare' | '/work'
+  id: '__root__' | '/' | '/about' | '/work' | '/work/healthcare' | '/work/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -97,14 +106,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkIndexRouteImport
       parentRoute: typeof WorkRoute
     }
+    '/work/healthcare': {
+      id: '/work/healthcare'
+      path: '/healthcare'
+      fullPath: '/work/healthcare'
+      preLoaderRoute: typeof WorkHealthcareRouteImport
+      parentRoute: typeof WorkRoute
+    }
   }
 }
 
 interface WorkRouteChildren {
+  WorkHealthcareRoute: typeof WorkHealthcareRoute
   WorkIndexRoute: typeof WorkIndexRoute
 }
 
 const WorkRouteChildren: WorkRouteChildren = {
+  WorkHealthcareRoute: WorkHealthcareRoute,
   WorkIndexRoute: WorkIndexRoute,
 }
 
