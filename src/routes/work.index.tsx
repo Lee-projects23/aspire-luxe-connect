@@ -3,7 +3,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { Counter } from "@/components/site/Counter";
 import { ArrowUpRight, Heart, Building2, LifeBuoy, GraduationCap, Trophy } from "lucide-react";
 
-export const Route = createFileRoute("/work")({
+export const Route = createFileRoute("/work/")({
   head: () => ({
     meta: [
       { title: "Our Work — Bagiage Foundation" },
