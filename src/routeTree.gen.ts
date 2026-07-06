@@ -9,38 +9,252 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WorkRouteImport } from './routes/work'
+import { Route as NewsRouteImport } from './routes/news'
+import { Route as InvolvedRouteImport } from './routes/involved'
+import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as DonateRouteImport } from './routes/donate'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WorkIndexRouteImport } from './routes/work.index'
+import { Route as WorkSportsRouteImport } from './routes/work.sports'
+import { Route as WorkInfrastructureRouteImport } from './routes/work.infrastructure'
+import { Route as WorkHealthcareRouteImport } from './routes/work.healthcare'
+import { Route as WorkEducationRouteImport } from './routes/work.education'
+import { Route as WorkDisasterResponseRouteImport } from './routes/work.disaster-response'
 
+const WorkRoute = WorkRouteImport.update({
+  id: '/work',
+  path: '/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvolvedRoute = InvolvedRouteImport.update({
+  id: '/involved',
+  path: '/involved',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonateRoute = DonateRouteImport.update({
+  id: '/donate',
+  path: '/donate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkIndexRoute = WorkIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => WorkRoute,
+} as any)
+const WorkSportsRoute = WorkSportsRouteImport.update({
+  id: '/sports',
+  path: '/sports',
+  getParentRoute: () => WorkRoute,
+} as any)
+const WorkInfrastructureRoute = WorkInfrastructureRouteImport.update({
+  id: '/infrastructure',
+  path: '/infrastructure',
+  getParentRoute: () => WorkRoute,
+} as any)
+const WorkHealthcareRoute = WorkHealthcareRouteImport.update({
+  id: '/healthcare',
+  path: '/healthcare',
+  getParentRoute: () => WorkRoute,
+} as any)
+const WorkEducationRoute = WorkEducationRouteImport.update({
+  id: '/education',
+  path: '/education',
+  getParentRoute: () => WorkRoute,
+} as any)
+const WorkDisasterResponseRoute = WorkDisasterResponseRouteImport.update({
+  id: '/disaster-response',
+  path: '/disaster-response',
+  getParentRoute: () => WorkRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/donate': typeof DonateRoute
+  '/impact': typeof ImpactRoute
+  '/involved': typeof InvolvedRoute
+  '/news': typeof NewsRoute
+  '/work': typeof WorkRouteWithChildren
+  '/work/disaster-response': typeof WorkDisasterResponseRoute
+  '/work/education': typeof WorkEducationRoute
+  '/work/healthcare': typeof WorkHealthcareRoute
+  '/work/infrastructure': typeof WorkInfrastructureRoute
+  '/work/sports': typeof WorkSportsRoute
+  '/work/': typeof WorkIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/donate': typeof DonateRoute
+  '/impact': typeof ImpactRoute
+  '/involved': typeof InvolvedRoute
+  '/news': typeof NewsRoute
+  '/work/disaster-response': typeof WorkDisasterResponseRoute
+  '/work/education': typeof WorkEducationRoute
+  '/work/healthcare': typeof WorkHealthcareRoute
+  '/work/infrastructure': typeof WorkInfrastructureRoute
+  '/work/sports': typeof WorkSportsRoute
+  '/work': typeof WorkIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/donate': typeof DonateRoute
+  '/impact': typeof ImpactRoute
+  '/involved': typeof InvolvedRoute
+  '/news': typeof NewsRoute
+  '/work': typeof WorkRouteWithChildren
+  '/work/disaster-response': typeof WorkDisasterResponseRoute
+  '/work/education': typeof WorkEducationRoute
+  '/work/healthcare': typeof WorkHealthcareRoute
+  '/work/infrastructure': typeof WorkInfrastructureRoute
+  '/work/sports': typeof WorkSportsRoute
+  '/work/': typeof WorkIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/donate'
+    | '/impact'
+    | '/involved'
+    | '/news'
+    | '/work'
+    | '/work/disaster-response'
+    | '/work/education'
+    | '/work/healthcare'
+    | '/work/infrastructure'
+    | '/work/sports'
+    | '/work/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/donate'
+    | '/impact'
+    | '/involved'
+    | '/news'
+    | '/work/disaster-response'
+    | '/work/education'
+    | '/work/healthcare'
+    | '/work/infrastructure'
+    | '/work/sports'
+    | '/work'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/donate'
+    | '/impact'
+    | '/involved'
+    | '/news'
+    | '/work'
+    | '/work/disaster-response'
+    | '/work/education'
+    | '/work/healthcare'
+    | '/work/infrastructure'
+    | '/work/sports'
+    | '/work/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  DonateRoute: typeof DonateRoute
+  ImpactRoute: typeof ImpactRoute
+  InvolvedRoute: typeof InvolvedRoute
+  NewsRoute: typeof NewsRoute
+  WorkRoute: typeof WorkRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/work': {
+      id: '/work'
+      path: '/work'
+      fullPath: '/work'
+      preLoaderRoute: typeof WorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/involved': {
+      id: '/involved'
+      path: '/involved'
+      fullPath: '/involved'
+      preLoaderRoute: typeof InvolvedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/donate': {
+      id: '/donate'
+      path: '/donate'
+      fullPath: '/donate'
+      preLoaderRoute: typeof DonateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +262,81 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/': {
+      id: '/work/'
+      path: '/'
+      fullPath: '/work/'
+      preLoaderRoute: typeof WorkIndexRouteImport
+      parentRoute: typeof WorkRoute
+    }
+    '/work/sports': {
+      id: '/work/sports'
+      path: '/sports'
+      fullPath: '/work/sports'
+      preLoaderRoute: typeof WorkSportsRouteImport
+      parentRoute: typeof WorkRoute
+    }
+    '/work/infrastructure': {
+      id: '/work/infrastructure'
+      path: '/infrastructure'
+      fullPath: '/work/infrastructure'
+      preLoaderRoute: typeof WorkInfrastructureRouteImport
+      parentRoute: typeof WorkRoute
+    }
+    '/work/healthcare': {
+      id: '/work/healthcare'
+      path: '/healthcare'
+      fullPath: '/work/healthcare'
+      preLoaderRoute: typeof WorkHealthcareRouteImport
+      parentRoute: typeof WorkRoute
+    }
+    '/work/education': {
+      id: '/work/education'
+      path: '/education'
+      fullPath: '/work/education'
+      preLoaderRoute: typeof WorkEducationRouteImport
+      parentRoute: typeof WorkRoute
+    }
+    '/work/disaster-response': {
+      id: '/work/disaster-response'
+      path: '/disaster-response'
+      fullPath: '/work/disaster-response'
+      preLoaderRoute: typeof WorkDisasterResponseRouteImport
+      parentRoute: typeof WorkRoute
+    }
   }
 }
 
+interface WorkRouteChildren {
+  WorkDisasterResponseRoute: typeof WorkDisasterResponseRoute
+  WorkEducationRoute: typeof WorkEducationRoute
+  WorkHealthcareRoute: typeof WorkHealthcareRoute
+  WorkInfrastructureRoute: typeof WorkInfrastructureRoute
+  WorkSportsRoute: typeof WorkSportsRoute
+  WorkIndexRoute: typeof WorkIndexRoute
+}
+
+const WorkRouteChildren: WorkRouteChildren = {
+  WorkDisasterResponseRoute: WorkDisasterResponseRoute,
+  WorkEducationRoute: WorkEducationRoute,
+  WorkHealthcareRoute: WorkHealthcareRoute,
+  WorkInfrastructureRoute: WorkInfrastructureRoute,
+  WorkSportsRoute: WorkSportsRoute,
+  WorkIndexRoute: WorkIndexRoute,
+}
+
+const WorkRouteWithChildren = WorkRoute._addFileChildren(WorkRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  DonateRoute: DonateRoute,
+  ImpactRoute: ImpactRoute,
+  InvolvedRoute: InvolvedRoute,
+  NewsRoute: NewsRoute,
+  WorkRoute: WorkRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
