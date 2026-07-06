@@ -13,6 +13,7 @@ import { Route as WorkRouteImport } from './routes/work'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkIndexRouteImport } from './routes/work.index'
+import { Route as WorkSportsRouteImport } from './routes/work.sports'
 import { Route as WorkInfrastructureRouteImport } from './routes/work.infrastructure'
 import { Route as WorkHealthcareRouteImport } from './routes/work.healthcare'
 import { Route as WorkEducationRouteImport } from './routes/work.education'
@@ -36,6 +37,11 @@ const IndexRoute = IndexRouteImport.update({
 const WorkIndexRoute = WorkIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => WorkRoute,
+} as any)
+const WorkSportsRoute = WorkSportsRouteImport.update({
+  id: '/sports',
+  path: '/sports',
   getParentRoute: () => WorkRoute,
 } as any)
 const WorkInfrastructureRoute = WorkInfrastructureRouteImport.update({
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/work/education': typeof WorkEducationRoute
   '/work/healthcare': typeof WorkHealthcareRoute
   '/work/infrastructure': typeof WorkInfrastructureRoute
+  '/work/sports': typeof WorkSportsRoute
   '/work/': typeof WorkIndexRoute
 }
 export interface FileRoutesByTo {
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/work/education': typeof WorkEducationRoute
   '/work/healthcare': typeof WorkHealthcareRoute
   '/work/infrastructure': typeof WorkInfrastructureRoute
+  '/work/sports': typeof WorkSportsRoute
   '/work': typeof WorkIndexRoute
 }
 export interface FileRoutesById {
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/work/education': typeof WorkEducationRoute
   '/work/healthcare': typeof WorkHealthcareRoute
   '/work/infrastructure': typeof WorkInfrastructureRoute
+  '/work/sports': typeof WorkSportsRoute
   '/work/': typeof WorkIndexRoute
 }
 export interface FileRouteTypes {
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/work/education'
     | '/work/healthcare'
     | '/work/infrastructure'
+    | '/work/sports'
     | '/work/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/work/education'
     | '/work/healthcare'
     | '/work/infrastructure'
+    | '/work/sports'
     | '/work'
   id:
     | '__root__'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/work/education'
     | '/work/healthcare'
     | '/work/infrastructure'
+    | '/work/sports'
     | '/work/'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +169,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkIndexRouteImport
       parentRoute: typeof WorkRoute
     }
+    '/work/sports': {
+      id: '/work/sports'
+      path: '/sports'
+      fullPath: '/work/sports'
+      preLoaderRoute: typeof WorkSportsRouteImport
+      parentRoute: typeof WorkRoute
+    }
     '/work/infrastructure': {
       id: '/work/infrastructure'
       path: '/infrastructure'
@@ -193,6 +212,7 @@ interface WorkRouteChildren {
   WorkEducationRoute: typeof WorkEducationRoute
   WorkHealthcareRoute: typeof WorkHealthcareRoute
   WorkInfrastructureRoute: typeof WorkInfrastructureRoute
+  WorkSportsRoute: typeof WorkSportsRoute
   WorkIndexRoute: typeof WorkIndexRoute
 }
 
@@ -201,6 +221,7 @@ const WorkRouteChildren: WorkRouteChildren = {
   WorkEducationRoute: WorkEducationRoute,
   WorkHealthcareRoute: WorkHealthcareRoute,
   WorkInfrastructureRoute: WorkInfrastructureRoute,
+  WorkSportsRoute: WorkSportsRoute,
   WorkIndexRoute: WorkIndexRoute,
 }
 
