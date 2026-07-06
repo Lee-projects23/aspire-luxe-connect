@@ -223,4 +223,3 @@
   50% { transform: translateY(-8px); }
 }
 @utility floaty { animation: floaty 6s ease-in-out infinite; }
-
