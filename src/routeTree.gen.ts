@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
+import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkIndexRouteImport } from './routes/work.index'
@@ -22,6 +23,11 @@ import { Route as WorkDisasterResponseRouteImport } from './routes/work.disaster
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
   path: '/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -68,6 +74,7 @@ const WorkDisasterResponseRoute = WorkDisasterResponseRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/impact': typeof ImpactRoute
   '/work': typeof WorkRouteWithChildren
   '/work/disaster-response': typeof WorkDisasterResponseRoute
   '/work/education': typeof WorkEducationRoute
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/impact': typeof ImpactRoute
   '/work/disaster-response': typeof WorkDisasterResponseRoute
   '/work/education': typeof WorkEducationRoute
   '/work/healthcare': typeof WorkHealthcareRoute
@@ -90,6 +98,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/impact': typeof ImpactRoute
   '/work': typeof WorkRouteWithChildren
   '/work/disaster-response': typeof WorkDisasterResponseRoute
   '/work/education': typeof WorkEducationRoute
@@ -103,6 +112,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/impact'
     | '/work'
     | '/work/disaster-response'
     | '/work/education'
@@ -114,6 +124,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/impact'
     | '/work/disaster-response'
     | '/work/education'
     | '/work/healthcare'
@@ -124,6 +135,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/impact'
     | '/work'
     | '/work/disaster-response'
     | '/work/education'
@@ -136,6 +148,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ImpactRoute: typeof ImpactRoute
   WorkRoute: typeof WorkRouteWithChildren
 }
 
@@ -146,6 +159,13 @@ declare module '@tanstack/react-router' {
       path: '/work'
       fullPath: '/work'
       preLoaderRoute: typeof WorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -230,6 +250,7 @@ const WorkRouteWithChildren = WorkRoute._addFileChildren(WorkRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ImpactRoute: ImpactRoute,
   WorkRoute: WorkRouteWithChildren,
 }
 export const routeTree = rootRouteImport
